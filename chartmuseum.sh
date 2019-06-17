@@ -9,8 +9,12 @@ echo "[Charts]"
 CHARTS=$(find . -iname "Chart.yaml" | awk -F "/" '{print $(NF-1)}')
 for CHART in $CHARTS; do echo $CHART; done
 
+if [ ${HELM_REPO_USERNAME} ]; then
+    AUTH_DETAILS="--username ${HELM_REPO_USERNAME} --password ${HELM_REPO_PASSWORD}"
+fi
+
 echo "[Using repo ${PLUGIN_HELM_REPO}]"
-helm repo add chartmuseum ${PLUGIN_HELM_REPO}
+helm repo add chartmuseum ${PLUGIN_HELM_REPO} ${AUTH_DETAILS}
 
 echo "[Pushing charts]"
 for CHART in ${CHARTS}; do

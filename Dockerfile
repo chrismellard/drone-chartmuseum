@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-ENV VERSION v2.7.2
+ENV VERSION v2.12.3
 ENV FILENAME helm-${VERSION}-linux-amd64.tar.gz
 
 COPY chartmuseum.sh /usr/local/bin/chartmuseum.sh
